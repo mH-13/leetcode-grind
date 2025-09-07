@@ -11,3 +11,4 @@ __pycache__/
 # Envs / local only
 .venv/
 .env
+GUIDES/

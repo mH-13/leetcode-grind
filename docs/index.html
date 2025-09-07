@@ -4,27 +4,84 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>leetcode-grind</title>
+
+  <!-- Prism (syntax highlight + line numbers) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-tomorrow.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-core.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/autoloader/prism-autoloader.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
+  <!-- App styles -->
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-  <header>
-    <h1>leetcode-grind</h1>
-    <p>Filter by track, category, tags. Click a card to view the solution on GitHub.</p>
-    <div id="filters">
-      <div><label>Track:</label> <select id="track"></select></div>
-      <div><label>Category:</label> <select id="category"></select></div>
-      <div><label>Type:</label> <select id="type"><option value="">All</option><option value="py">Python</option><option value="sql">SQL</option></select></div>
-      <div><label>Tags:</label> <input id="tagSearch" placeholder="type to filter tags"/><div id="tags"></div></div>
-      <div><button id="reset">Reset</button></div>
+  <header class="topbar">
+    <div class="brand">
+      <h1>leetcode-grind</h1>
+      <span class="muted">coder view · filter · preview</span>
+    </div>
+    <div class="searchbox">
+      <input id="q" placeholder="search title / slug / tags (e.g. two-pointers, dp, 1768)"/>
     </div>
   </header>
+
+  <section class="filters">
+    <div class="row">
+      <label>Track</label>
+      <select id="track"></select>
+    </div>
+    <div class="row">
+      <label>Category</label>
+      <select id="category"></select>
+    </div>
+    <div class="row">
+      <label>Type</label>
+      <select id="type">
+        <option value="">All</option>
+        <option value="py">Python</option>
+        <option value="sql">SQL</option>
+      </select>
+    </div>
+    <div class="row">
+      <label>Tags</label>
+      <input id="tagSearch" placeholder="filter tags"/>
+      <div id="tags" class="tags"></div>
+    </div>
+    <div class="row">
+      <button id="reset" class="btn">Reset</button>
+    </div>
+  </section>
+
   <main>
-    <div id="stats"></div>
-    <div id="cards"></div>
+    <div id="stats" class="stats"></div>
+    <div id="cards" class="cards"></div>
   </main>
-  <footer>
-    <a href="https://github.com/mh-13/leetcode-grind" target="_blank">GitHub Repo</a>
+
+  <footer class="footer">
+    <div>
+      <a href="https://github.com/mh-13/leetcode-grind" target="_blank">GitHub Repo</a>
+    </div>
+    <div class="muted">Tip: press <kbd>Esc</kbd> to close, <kbd>←</kbd>/<kbd>→</kbd> navigate</div>
   </footer>
-  <script src="app.js"></script>
+
+  <!-- Modal: code viewer -->
+  <div id="modal" class="modal hidden" aria-hidden="true" role="dialog" aria-label="Code viewer">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="title" id="modalTitle">#0000 — Title</div>
+        <div class="actions">
+          <button id="copyBtn" class="btn small">Copy</button>
+          <a id="rawBtn" class="btn small" target="_blank" rel="noopener">Raw</a>
+          <a id="ghBtn" class="btn small" target="_blank" rel="noopener">GitHub</a>
+          <button id="closeBtn" class="btn small">Close</button>
+        </div>
+      </div>
+      <div class="meta-line" id="modalMeta"></div>
+      <pre id="codePre" class="line-numbers"><code id="codeEl" class="language-none"></code></pre>
+    </div>
+  </div>
+
+  <script src="app.js" defer></script>
 </body>
 </html>

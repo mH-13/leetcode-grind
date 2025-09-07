@@ -1,0 +1,52 @@
+{
+  "plan": "sql-50",
+  "items": [
+    {
+      "id": 175,
+      "title": "Combine Two Tables",
+      "slug": "combine_two_tables",
+      "difficulty": "Easy",
+      "category": "JOINs",
+      "tags": [
+        "join"
+      ],
+      "link": "https://leetcode.com/problems/combine-two-tables/"
+    },
+    {
+      "id": 176,
+      "title": "Second Highest Salary",
+      "slug": "second_highest_salary",
+      "difficulty": "Medium",
+      "category": "Window Functions",
+      "tags": [
+        "window",
+        "rank"
+      ],
+      "link": "https://leetcode.com/problems/second-highest-salary/"
+    },
+    {
+      "id": 177,
+      "title": "Nth Highest Salary",
+      "slug": "nth_highest_salary",
+      "difficulty": "Medium",
+      "category": "Window Functions",
+      "tags": [
+        "window",
+        "rank"
+      ],
+      "link": "https://leetcode.com/problems/nth-highest-salary/"
+    },
+    {
+      "id": 181,
+      "title": "Employees Earning More Than Their Managers",
+      "slug": "employees_earning_more_than_their_managers",
+      "difficulty": "Easy",
+      "category": "JOINs",
+      "tags": [
+        "join",
+        "self-join"
+      ],
+      "link": "https://leetcode.com/problems/employees-earning-more-than-their-managers/"
+    }
+  ]
+}

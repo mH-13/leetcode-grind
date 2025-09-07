@@ -1,0 +1,26 @@
+name: Sync Tracks & Build UI
+on:
+  push:
+    branches: [ main ]
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Sync all
+        run: |
+          python scripts/sync_all.py
+      - name: Commit generated files
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: sync tracks + rebuild index"
+          file_pattern: |
+            tracks/*.json
+            tracks/*.md
+            docs/data/index.json
+            README.md

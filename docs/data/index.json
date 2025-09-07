@@ -1,0 +1,33 @@
+{
+  "generated_at": "2025-09-07T05:54:21.188436Z",
+  "tracks": [
+    "leetcode-75"
+  ],
+  "tags": [
+    "array",
+    "hashmap"
+  ],
+  "categories": [
+    "Hash Map / Set"
+  ],
+  "items": [
+    {
+      "id": 1,
+      "title": "Two Sum",
+      "slug": "two_sum",
+      "idea": "Hash map value->index (single pass)",
+      "time": "O(n) | Space: O(n)",
+      "space": "",
+      "tags": [
+        "hashmap",
+        "array"
+      ],
+      "link": "https://leetcode.com/problems/two-sum/",
+      "difficulty": "",
+      "category": "Hash Map / Set",
+      "track": "leetcode-75",
+      "type": "py",
+      "path": "python/leetcode-75/0001_two_sum.py"
+    }
+  ]
+}

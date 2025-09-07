@@ -1,0 +1,5 @@
+id,title,slug,difficulty,category,tags
+175,Combine Two Tables,combine_two_tables,Easy,JOINs,"join"
+176,Second Highest Salary,second_highest_salary,Medium,Window Functions,"window,rank"
+177,Nth Highest Salary,nth_highest_salary,Medium,Window Functions,"window,rank"
+181,Employees Earning More Than Their Managers,employees_earning_more_than_their_managers,Easy,JOINs,"join,self-join"

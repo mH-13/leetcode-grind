@@ -9,15 +9,16 @@
   const tagSearch = document.getElementById("tagSearch");
   const statsEl  = document.getElementById("stats");
   const resetBtn = document.getElementById("reset");
+  const catSel   = document.getElementById("category");
 
-  // State
-  const state = { track:"", type:"", tags:new Set() };
+  const state = { track:"", type:"", category:"", tags:new Set() };
 
-  // Build track options
   trackSel.innerHTML = `<option value="">All</option>` + data.tracks.map(t=>`<option>${t}</option>`).join("");
   trackSel.onchange = ()=>{ state.track = trackSel.value; render(); };
 
-  // Build tag list
+  catSel.innerHTML = `<option value="">All</option>` + data.categories.map(c=>`<option>${c}</option>`).join("");
+  catSel.onchange = ()=>{ state.category = catSel.value; render(); };
+
   let filteredTagList = data.tags.slice();
   function renderTags(){
     tagsEl.innerHTML = "";
@@ -40,15 +41,12 @@
   };
   renderTags();
 
-  // Type filter
   typeSel.onchange = ()=>{ state.type = typeSel.value; render(); };
-
-  // Reset
   resetBtn.onclick = ()=>{
     state.track=""; trackSel.value="";
     state.type="";  typeSel.value="";
-    state.tags.clear();
-    tagSearch.value="";
+    state.category=""; catSel.value="";
+    state.tags.clear(); tagSearch.value="";
     filteredTagList = data.tags.slice(); renderTags();
     render();
   };
@@ -57,31 +55,28 @@
     return `https://github.com/mh-13/leetcode-grind/blob/main/${item.path}`;
   }
 
+  function badge(text){ return `<span class="chip">${text}</span>`; }
+
   function render(){
     const activeTags = [...state.tags];
     const items = data.items.filter(x=>{
       if (state.track && x.track !== state.track) return false;
       if (state.type && x.type !== state.type) return false;
+      if (state.category && x.category !== state.category) return false;
       if (activeTags.length && !activeTags.every(t=>x.tags.includes(t))) return false;
       return true;
     });
-
     statsEl.textContent = `${items.length} / ${data.items.length} shown`;
-
     cardsEl.innerHTML = items.map(x=>{
-      const chips = x.tags.map(t=>`<span class="chip">${t}</span>`).join("");
+      const chips = x.tags.map(badge).join("");
+      const meta = [x.track, x.type.toUpperCase(), x.difficulty || "", x.category || ""].filter(Boolean).join(" · ");
       return `
       <div class="card" onclick="window.open('${ghUrl(x)}','_blank')">
         <h3>${String(x.id).padStart(4,"0")} — ${x.title}</h3>
-        <div class="meta">
-          <span>${x.track}</span>
-          <span>${x.type.toUpperCase()}</span>
-          <span>${x.time || ""}${x.space ? " · "+x.space:""}</span>
-        </div>
+        <div class="meta">${meta}</div>
         <div class="chips">${chips}</div>
       </div>`;
     }).join("");
   }
-
   render();
 })();

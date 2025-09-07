@@ -1,0 +1,66 @@
+{
+  "plan": "top-interview-150",
+  "items": [
+    {
+      "id": 33,
+      "title": "Search in Rotated Sorted Array",
+      "slug": "search_in_rotated_sorted_array",
+      "difficulty": "Medium",
+      "category": "Binary Search",
+      "tags": [
+        "binary-search"
+      ],
+      "link": "https://leetcode.com/problems/search-in-rotated-sorted-array/"
+    },
+    {
+      "id": 49,
+      "title": "Group Anagrams",
+      "slug": "group_anagrams",
+      "difficulty": "Medium",
+      "category": "Hash Map / Set",
+      "tags": [
+        "hashmap",
+        "string",
+        "sorting"
+      ],
+      "link": "https://leetcode.com/problems/group-anagrams/"
+    },
+    {
+      "id": 200,
+      "title": "Number of Islands",
+      "slug": "number_of_islands",
+      "difficulty": "Medium",
+      "category": "Graphs - BFS",
+      "tags": [
+        "bfs",
+        "grid"
+      ],
+      "link": "https://leetcode.com/problems/number-of-islands/"
+    },
+    {
+      "id": 238,
+      "title": "Product of Array Except Self",
+      "slug": "product_of_array_except_self",
+      "difficulty": "Medium",
+      "category": "Array",
+      "tags": [
+        "array",
+        "prefix-sum"
+      ],
+      "link": "https://leetcode.com/problems/product-of-array-except-self/"
+    },
+    {
+      "id": 239,
+      "title": "Sliding Window Maximum",
+      "slug": "sliding_window_maximum",
+      "difficulty": "Hard",
+      "category": "Sliding Window",
+      "tags": [
+        "array",
+        "deque",
+        "sliding-window"
+      ],
+      "link": "https://leetcode.com/problems/sliding-window-maximum/"
+    }
+  ]
+}

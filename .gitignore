@@ -1,5 +1,13 @@
+# Python junk
 __pycache__/
 *.pyc
+
+# Editors & OS
 .DS_Store
-.env
+.vscode/
+.idea/
 .ipynb_checkpoints/
+
+# Envs / local only
+.venv/
+.env

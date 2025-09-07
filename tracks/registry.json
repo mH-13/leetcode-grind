@@ -1,0 +1,37 @@
+{
+  "tracks": [
+    {
+      "key": "leetcode-75",
+      "name": "LeetCode 75",
+      "type": "py",
+      "total": 75,
+      "dir_py": "python/leetcode-75",
+      "dir_sql": "",
+      "plan_json": "tracks/leetcode-75.json",
+      "checklist_md": "tracks/leetcode-75.md",
+      "csv": "tracks/leetcode-75.csv"
+    },
+    {
+      "key": "top-interview-150",
+      "name": "Top Interview 150",
+      "type": "py",
+      "total": 150,
+      "dir_py": "python/top-interview-150",
+      "dir_sql": "",
+      "plan_json": "tracks/top-interview-150.json",
+      "checklist_md": "tracks/top-interview-150.md",
+      "csv": "tracks/top-interview-150.csv"
+    },
+    {
+      "key": "sql-50",
+      "name": "SQL 50",
+      "type": "sql",
+      "total": 50,
+      "dir_py": "",
+      "dir_sql": "sql/sql-50",
+      "plan_json": "tracks/sql-50.json",
+      "checklist_md": "tracks/sql-50.md",
+      "csv": "tracks/sql-50.csv"
+    }
+  ]
+}

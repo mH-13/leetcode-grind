@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>leetcode-grind</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <header>
+    <h1>leetcode-grind</h1>
+    <p>Filter by track & tags. Click a card to view the solution on GitHub.</p>
+    <div id="filters">
+      <div>
+        <label>Track:</label>
+        <select id="track"></select>
+      </div>
+      <div>
+        <label>Tags:</label>
+        <input id="tagSearch" placeholder="type to filter tags"/>
+        <div id="tags"></div>
+      </div>
+      <div>
+        <label>Type:</label>
+        <select id="type">
+          <option value="">All</option>
+          <option value="py">Python</option>
+          <option value="sql">SQL</option>
+        </select>
+      </div>
+      <div>
+        <button id="reset">Reset</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div id="stats"></div>
+    <div id="cards"></div>
+  </main>
+
+  <footer>
+    <a href="https://github.com/mh-13/leetcode-grind" target="_blank">GitHub Repo</a>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,5 +1,11 @@
 (async function main(){
-  const data = await fetch("./data/index.json", {cache:"no-store"}).then(r=>r.json());
+// per-load cache buster so we always bypass stale CDN/browser caches
+const BUST = Date.now();
+const data = await fetch(`./data/index.json?ts=${BUST}`, {cache:"no-store"}).then(r=>r.json());
+
+
+
+
 
   // ---------- owner/repo detection (no hardcoding)
   function detectOwnerRepo(){
@@ -19,7 +25,7 @@
   async function fetchRawWithFallback(path){
     let lastErr = null;
     for (const branch of BRANCHES){
-      const url = `https://raw.githubusercontent.com/${OR.owner}/${OR.repo}/${branch}/${path}`;
+      const url = `https://raw.githubusercontent.com/${OR.owner}/${OR.repo}/${branch}/${path}?ts=${Date.now()}`;
       try {
         const res = await fetch(url, {cache:"no-store"});
         if (res.ok) {

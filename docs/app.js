@@ -1,7 +1,47 @@
 (async function main(){
   const data = await fetch("./data/index.json", {cache:"no-store"}).then(r=>r.json());
 
-  // Elements
+  // ---------- owner/repo detection (no hardcoding)
+  function detectOwnerRepo(){
+    // If hosted on *.github.io/<repo>/...
+    if (location.hostname.endsWith("github.io")) {
+      const owner = location.hostname.split(".")[0];
+      const pathParts = location.pathname.split("/").filter(Boolean);
+      const repo = pathParts[0] || "leetcode-grind";
+      return { owner, repo };
+    }
+    // Fallback to defaults (edit if you serve elsewhere)
+    return { owner: "mh-13", repo: "leetcode-grind" };
+  }
+  const OR = detectOwnerRepo();
+  const BRANCHES = ["main", "master", "gh-pages"]; // try in this order
+
+  async function fetchRawWithFallback(path){
+    let lastErr = null;
+    for (const branch of BRANCHES){
+      const url = `https://raw.githubusercontent.com/${OR.owner}/${OR.repo}/${branch}/${path}`;
+      try {
+        const res = await fetch(url, {cache:"no-store"});
+        if (res.ok) {
+          const txt = await res.text();
+          return { txt, url, branch };
+        }
+        lastErr = { status: res.status, url };
+      } catch (e) {
+        lastErr = { error: e, url };
+      }
+    }
+    throw lastErr || new Error("Raw fetch failed");
+  }
+
+  function ghBlobUrl(path, branch="main"){
+    return `https://github.com/${OR.owner}/${OR.repo}/blob/${branch}/${path}`;
+  }
+  function ghRawUrl(path, branch="main"){
+    return `https://raw.githubusercontent.com/${OR.owner}/${OR.repo}/${branch}/${path}`;
+  }
+
+  // ---------- Elements
   const cardsEl = document.getElementById("cards");
   const trackSel = document.getElementById("track");
   const typeSel  = document.getElementById("type");
@@ -23,17 +63,17 @@
   const ghBtn    = document.getElementById("ghBtn");
   const rawBtn   = document.getElementById("rawBtn");
 
-  // State
-  const state = { track:"", type:"", category:"", tags:new Set(), q:"", list:[], selectedIndex:-1 };
+  // ---------- State
+  const state = { track:"", type:"", category:"", tags:new Set(), q:"", list:[], selectedIndex:-1, lastBranchTried:"main" };
 
-  // Populate filters
+  // ---------- Filters
   trackSel.innerHTML = `<option value="">All</option>` + data.tracks.map(t=>`<option>${t}</option>`).join("");
   catSel.innerHTML   = `<option value="">All</option>` + data.categories.map(c=>`<option>${c}</option>`).join("");
   trackSel.onchange  = ()=>{ state.track = trackSel.value; render(); };
   typeSel.onchange   = ()=>{ state.type = typeSel.value; render(); };
   catSel.onchange    = ()=>{ state.category = catSel.value; render(); };
 
-  // Tags UI
+  // Tags
   let filteredTagList = data.tags.slice();
   function renderTags(){
     tagsEl.innerHTML = "";
@@ -73,7 +113,7 @@
     render();
   };
 
-  // Compute list & render cards
+  // ---------- Filter + render
   function matchQuery(x){
     if (!state.q) return true;
     const hay = `${x.id} ${x.title} ${x.slug} ${x.tags.join(" ")}`.toLowerCase();
@@ -107,7 +147,7 @@
   }
   render();
 
-  // Click card -> open modal code viewer
+  // ---------- Open modal on card click
   cardsEl.addEventListener("click", async (e)=>{
     const card = e.target.closest(".card");
     if (!card) return;
@@ -115,13 +155,6 @@
     openItem(idx);
   });
 
-  function rawUrl(item){
-    // Fetch raw content directly from GitHub (CORS-enabled)
-    return `https://raw.githubusercontent.com/mh-13/leetcode-grind/main/${item.path}`;
-  }
-  function ghUrl(item){
-    return `https://github.com/mh-13/leetcode-grind/blob/main/${item.path}`;
-  }
   function langClass(item){
     return item.type === "py" ? "language-python" : (item.type === "sql" ? "language-sql" : "language-none");
   }
@@ -131,31 +164,32 @@
     state.selectedIndex = idx;
     const item = state.list[idx];
 
-    // UI bits
     modalTitle.textContent = `#${String(item.id).padStart(4,"0")} — ${item.title}`;
-    modalMeta.textContent = [
-      item.track, item.type.toUpperCase(), item.difficulty || "", item.category || "", (item.link || "")
-    ].filter(Boolean).join(" · ");
+    modalMeta.textContent = [item.track, item.type.toUpperCase(), item.difficulty || "", item.category || "", (item.link || "")]
+      .filter(Boolean).join(" · ");
 
-    ghBtn.href  = ghUrl(item);
-    rawBtn.href = rawUrl(item);
-
-    // Fetch code
     codeEl.className = langClass(item);
     codeEl.textContent = "Loading…";
     showModal(true);
 
     try {
-      const res = await fetch(rawUrl(item), {cache:"no-store"});
-      const txt = await res.text();
+      const { txt, url, branch } = await fetchRawWithFallback(item.path);
+      state.lastBranchTried = branch;
       codeEl.textContent = txt;
-      // Prism will auto-load components via autoloader
+      // links
+      ghBtn.href  = ghBlobUrl(item.path, branch);
+      rawBtn.href = url;
+      // highlight
       if (window.Prism) Prism.highlightElement(codeEl);
-      // Deep link
+      // deep link
       location.hash = `item=${encodeURIComponent(item.track)}:${item.type}:${item.id}`;
     } catch (err) {
+      const attempted = BRANCHES.map(b=>ghRawUrl(item.path, b)).join("\n");
       codeEl.className = "language-none";
-      codeEl.textContent = "Failed to load code.";
+      codeEl.textContent = `404: Not Found\n\nTried:\n${attempted}\n\nCheck:\n• File path & name (4-digit id + slug)\n• Branch exists (main/master/gh-pages)\n• Pushed to GitHub`;
+      ghBtn.href  = ghBlobUrl(item.path, "main");
+      rawBtn.href = ghRawUrl(item.path, "main");
+      console.warn("Fetch error:", err);
     }
   }
 
@@ -173,7 +207,7 @@
     setTimeout(()=> copyBtn.textContent = "Copy", 1200);
   };
 
-  // Keyboard: Esc to close, arrows navigate
+  // Keyboard nav
   window.addEventListener("keydown", (e)=>{
     if (modal.classList.contains("hidden")) return;
     if (e.key === "Escape"){ showModal(false); location.hash = ""; }
@@ -184,15 +218,14 @@
   // Click backdrop to close
   modal.addEventListener("click",(e)=>{ if (e.target === modal) { showModal(false); location.hash = ""; } });
 
-  // Handle deep link (#item=track:type:id)
+  // Deep link (#item=track:type:id)
   function tryOpenFromHash(){
     const h = new URLSearchParams(location.hash.replace(/^#/, ""));
     const val = h.get("item"); if (!val) return;
     const [track, type, idStr] = val.split(":");
     const id = Number(idStr);
-    // ensure filters include this item
     trackSel.value = track || ""; state.track = trackSel.value;
-    typeSel.value = type || "";  state.type = typeSel.value;
+    typeSel.value  = type || "";  state.type  = typeSel.value;
     render();
     const idx = state.list.findIndex(x=> x.track === track && x.type === type && x.id === id);
     if (idx >= 0) openItem(idx);

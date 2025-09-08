@@ -2,18 +2,16 @@
 
 ## Add New Problem
 
-**Quick method:**
+**Quick method (recommended):**
 ```bash
 python scripts/new.py --type py --track leetcode-75 --id 1768 --slug merge_strings_alternately --title "Merge Strings Alternately"
 ```
+- Creates file automatically with proper header
+- Adds CSV entry if missing
+- Ready to code - just add your solution
 
-**Manual method:**
-1. Add to CSV: `tracks/leetcode-75.csv`
-   ```csv
-   1768,Merge Strings Alternately,merge_strings_alternately,Easy,Array / String,"string,two-pointers"
-   ```
-
-2. Create file: `python/leetcode-75/1768_merge_strings_alternately.py`
+**Manual method (only if CSV exists):**
+1. Create file: `python/leetcode-75/1768_merge_strings_alternately.py`
    ```python
    """
    1768 - Merge Strings Alternately (merge_strings_alternately)
@@ -37,4 +35,4 @@ git add -A && git commit -m "feat(py): 1768 merge_strings_alternately"
 git push
 ```
 
-**File naming:** `<4-digit-id>_<snake_case_slug>.py`
+**Use the script - it saves time!** 🚀

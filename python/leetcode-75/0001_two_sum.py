@@ -15,4 +15,5 @@ class Solution:
             if need in seen:
                 return [seen[need], i]
             seen[x] = i
+        # Return empty list if no two numbers sum up to the target
         return []

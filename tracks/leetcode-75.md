@@ -10,8 +10,8 @@
 - [ ] 0443 — string_compression
 - [ ] 0605 — can_place_flowers
 - [ ] 1071 — greatest_common_divisor_of_strings
-- [ ] 1431 — kids_with_the_greatest_number_of_candies
-- [ ] 1768 — merge_strings_alternately
+- [x] 1431 — kids_with_the_greatest_number_of_candies
+- [x] 1768 — merge_strings_alternately
 
 ## Backtracking
 

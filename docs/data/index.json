@@ -1,13 +1,16 @@
 {
-  "generated_at": "2025-09-08T06:15:36.365888Z",
+  "generated_at": "2025-09-08T09:42:12.589662+00:00",
   "tracks": [
     "leetcode-75"
   ],
   "tags": [
     "array",
-    "hashmap"
+    "hashmap",
+    "string",
+    "two-pointers"
   ],
   "categories": [
+    "Array / String",
     "Hash Map / Set"
   ],
   "items": [
@@ -28,6 +31,41 @@
       "track": "leetcode-75",
       "type": "py",
       "path": "python/leetcode-75/0001_two_sum.py"
+    },
+    {
+      "id": 1431,
+      "title": "Kids With the Greatest Number of Candies",
+      "slug": "kids_with_the_greatest_number_of_candies",
+      "idea": "find max, check if each kid + extra >= max",
+      "time": "O(n) | Space: O(1)",
+      "space": "",
+      "tags": [
+        "array"
+      ],
+      "link": "https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/",
+      "difficulty": "Easy",
+      "category": "Array / String",
+      "track": "leetcode-75",
+      "type": "py",
+      "path": "python/leetcode-75/1431_kids_with_the_greatest_number_of_candies.py"
+    },
+    {
+      "id": 1768,
+      "title": "Merge Strings Alternately",
+      "slug": "merge_strings_alternately",
+      "idea": "two pointers, alternate characters from both strings",
+      "time": "O(n) | Space: O(1)",
+      "space": "",
+      "tags": [
+        "string",
+        "two-pointers"
+      ],
+      "link": "https://leetcode.com/problems/merge-strings-alternately/",
+      "difficulty": "Easy",
+      "category": "Array / String",
+      "track": "leetcode-75",
+      "type": "py",
+      "path": "python/leetcode-75/1768_merge_strings_alternately.py"
     }
   ]
 }

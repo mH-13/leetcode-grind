@@ -12,8 +12,28 @@
   <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/autoloader/prism-autoloader.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.js"></script>
 
-  <!-- App styles -->
-  <link rel="stylesheet" href="style.css"/>
+  <!-- Strong cache busting for local assets -->
+  <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  <script>
+    (function(){
+      const v = Date.now();
+      const css = document.createElement('link');
+      css.rel = 'stylesheet';
+      css.href = 'style.css?v=' + v;
+      document.head.appendChild(css);
+
+      const app = document.createElement('script');
+      app.src = 'app.js?v=' + v;
+      app.defer = true;
+      document.head.appendChild(app);
+    })();
+  </script>
+  <noscript>
+    <link rel="stylesheet" href="style.css"/>
+    <script src="app.js" defer></script>
+  </noscript>
 </head>
 <body>
   <header class="topbar">
@@ -27,29 +47,15 @@
   </header>
 
   <section class="filters">
-    <div class="row">
-      <label>Track</label>
-      <select id="track"></select>
+    <div class="row"><label>Track</label><select id="track"></select></div>
+    <div class="row"><label>Category</label><select id="category"></select></div>
+    <div class="row"><label>Type</label>
+      <select id="type"><option value="">All</option><option value="py">Python</option><option value="sql">SQL</option></select>
     </div>
-    <div class="row">
-      <label>Category</label>
-      <select id="category"></select>
-    </div>
-    <div class="row">
-      <label>Type</label>
-      <select id="type">
-        <option value="">All</option>
-        <option value="py">Python</option>
-        <option value="sql">SQL</option>
-      </select>
-    </div>
-    <div class="row">
-      <label>Tags</label>
-      <input id="tagSearch" placeholder="filter tags"/>
-      <div id="tags" class="tags"></div>
-    </div>
+    <div class="row"><label>Tags</label><input id="tagSearch" placeholder="filter tags"/><div id="tags" class="tags"></div></div>
     <div class="row">
       <button id="reset" class="btn">Reset</button>
+      <button id="refreshData" class="btn">Refresh Data</button>
     </div>
   </section>
 
@@ -59,9 +65,7 @@
   </main>
 
   <footer class="footer">
-    <div>
-      <a href="https://github.com/mh-13/leetcode-grind" target="_blank">GitHub Repo</a>
-    </div>
+    <div><a href="https://github.com/mh-13/leetcode-grind" target="_blank">GitHub Repo</a></div>
     <div class="muted">Tip: press <kbd>Esc</kbd> to close, <kbd>←</kbd>/<kbd>→</kbd> navigate</div>
   </footer>
 
@@ -81,7 +85,5 @@
       <pre id="codePre" class="line-numbers"><code id="codeEl" class="language-none"></code></pre>
     </div>
   </div>
-
-  <script src="app.js" defer></script>
 </body>
 </html>

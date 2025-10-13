@@ -16,9 +16,24 @@
   <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="pragma" content="no-cache">
   <meta http-equiv="expires" content="0">
+
+  <!-- Version tracking - update this when you make changes -->
+  <meta name="version" content="2.0.0">
+
   <script>
     (function(){
-      const v = Date.now();
+      // Use a combination of build timestamp and random for aggressive cache busting
+      const v = Date.now() + Math.random().toString(36).substr(2, 9);
+
+      // Clear old caches
+      if ('caches' in window) {
+        caches.keys().then(function(names) {
+          names.forEach(function(name) {
+            caches.delete(name);
+          });
+        });
+      }
+
       const css = document.createElement('link');
       css.rel = 'stylesheet';
       css.href = 'style.css?v=' + v;
@@ -60,9 +75,32 @@
   </section>
 
   <main>
-    <div id="stats" class="stats"></div>
-    <div id="cards" class="cards"></div>
+    <div class="section-header">
+      <div class="section-title">
+        <span id="viewTitle">📊 Dashboard</span>
+      </div>
+      <div class="view-toggle">
+        <button class="view-toggle-btn active" data-view="dashboard">Dashboard</button>
+        <button class="view-toggle-btn" data-view="problems">Problems</button>
+      </div>
+    </div>
+
+    <!-- Dashboard View -->
+    <div id="dashboardView" class="dashboard">
+      <!-- Progress cards will be inserted here -->
+    </div>
+
+    <!-- Problems View -->
+    <div id="problemsView" style="display:none;">
+      <div id="stats" class="stats"></div>
+      <div id="cards" class="cards"></div>
+    </div>
   </main>
+
+  <!-- Theme Toggle Button -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+    🌙
+  </button>
 
   <footer class="footer">
     <div><a href="https://github.com/mh-13/leetcode-grind" target="_blank">GitHub Repo</a></div>

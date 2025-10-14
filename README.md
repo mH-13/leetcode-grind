@@ -17,7 +17,7 @@ Track-based LeetCode repo with pattern tags, interactive dashboard, and hassle-f
 - `scripts/` — helper scripts
 
 ## Progress
-<!-- PROGRESS:lc75:start -->Leetcode 75: 3/75 (4%)<!-- PROGRESS:lc75:end -->
+<!-- PROGRESS:lc75:start -->Leetcode 75: 4/76 (5%)<!-- PROGRESS:lc75:end -->
 <!-- PROGRESS:ti150:start -->Top Interview 150: 0/5 (0%)<!-- PROGRESS:ti150:end -->
 <!-- PROGRESS:sql50:start -->Sql 50: 1/4 (25%)<!-- PROGRESS:sql50:end -->
 

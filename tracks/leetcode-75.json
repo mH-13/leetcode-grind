@@ -602,6 +602,18 @@
       "link": "https://leetcode.com/problems/max-consecutive-ones-iii/"
     },
     {
+      "id": 1017,
+      "title": "Greatest Common Divisor of Strings",
+      "slug": "greatest_common_divisor_of_strings",
+      "difficulty": "Easy",
+      "category": "Uncategorized",
+      "tags": [
+        "math",
+        "stirng"
+      ],
+      "link": "https://leetcode.com/problems/greatest-common-divisor-of-strings/"
+    },
+    {
       "id": 1071,
       "title": "Greatest Common Divisor of Strings",
       "slug": "greatest_common_divisor_of_strings",

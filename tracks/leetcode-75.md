@@ -9,7 +9,7 @@
 - [ ] 0345 — reverse_vowels_of_a_string
 - [ ] 0443 — string_compression
 - [ ] 0605 — can_place_flowers
-- [ ] 1071 — greatest_common_divisor_of_strings
+- [x] 1071 — greatest_common_divisor_of_strings
 - [x] 1431 — kids_with_the_greatest_number_of_candies
 - [x] 1768 — merge_strings_alternately
 
@@ -141,3 +141,7 @@
 - [ ] 0283 — move_zeroes
 - [ ] 0392 — is_subsequence
 - [ ] 1679 — max_number_of_k_sum_pairs
+
+## Uncategorized
+
+- [ ] 1017 — greatest_common_divisor_of_strings

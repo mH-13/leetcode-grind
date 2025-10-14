@@ -1,11 +1,12 @@
 {
-  "generated_at": "2025-10-13T10:28:43.579668+00:00",
+  "generated_at": "2025-10-14T10:25:20.865462+00:00",
   "tracks": [
     "leetcode-75"
   ],
   "tags": [
     "array",
     "hashmap",
+    "math",
     "string",
     "two-pointers"
   ],
@@ -49,6 +50,24 @@
       "track": "leetcode-75",
       "type": "py",
       "path": "python/leetcode-75/0151_reverse_words_in_a_string.py"
+    },
+    {
+      "id": 1071,
+      "title": "Greatest Common Divisor of Strings",
+      "slug": "greatest_common_divisor_of_strings",
+      "idea": "Time: O() | Space: O()",
+      "time": "O() | Space: O()",
+      "space": "",
+      "tags": [
+        "math",
+        "string"
+      ],
+      "link": "https://leetcode.com/problems/greatest-common-divisor-of-strings/",
+      "difficulty": "Easy",
+      "category": "Array / String",
+      "track": "leetcode-75",
+      "type": "py",
+      "path": "python/leetcode-75/1071_greatest_common_divisor_of_strings.py"
     },
     {
       "id": 1431,

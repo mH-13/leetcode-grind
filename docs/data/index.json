@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-10-21T05:54:28.394539+00:00",
+  "generated_at": "2025-10-21T07:17:00.381437+00:00",
   "tracks": [
     "leetcode-75"
   ],
@@ -51,6 +51,24 @@
       "track": "leetcode-75",
       "type": "py",
       "path": "python/leetcode-75/0151_reverse_words_in_a_string.py"
+    },
+    {
+      "id": 345,
+      "title": "Reverse Vowels of a String",
+      "slug": "reverse-vowels-of-a-string",
+      "idea": "Time: O() | Space: O()",
+      "time": "O() | Space: O()",
+      "space": "",
+      "tags": [
+        "two-pointers",
+        "string"
+      ],
+      "link": "https://leetcode.com/problems/reverse-vowels-of-a-string/",
+      "difficulty": "Easy",
+      "category": "Array / String",
+      "track": "leetcode-75",
+      "type": "py",
+      "path": "python/leetcode-75/0345_reverse-vowels-of-a-string.py"
     },
     {
       "id": 605,

@@ -8,7 +8,7 @@
 - [ ] 0334 — increasing_triplet_subsequence
 - [ ] 0345 — reverse_vowels_of_a_string
 - [ ] 0443 — string_compression
-- [ ] 0605 — can_place_flowers
+- [x] 0605 — can_place_flowers
 - [x] 1071 — greatest_common_divisor_of_strings
 - [x] 1431 — kids_with_the_greatest_number_of_candies
 - [x] 1768 — merge_strings_alternately

@@ -18,12 +18,30 @@ except ImportError:
     print("Error: Cannot import required modules")
     sys.exit(1)
 
-TRACKS = {
-    "1": {"name": "leetcode-75", "display": "LeetCode 75"},
-    "2": {"name": "top-interview-150", "display": "Top Interview 150"},
-    "3": {"name": "sql-50", "display": "SQL 50"},
-}
+# Auto-load tracks from registry
+def load_tracks():
+    """Load all tracks from registry.json."""
+    import json
+    registry_path = ROOT / "tracks/registry.json"
+    try:
+        with open(registry_path, 'r') as f:
+            registry = json.load(f)
+        tracks = {}
+        for i, track in enumerate(registry['tracks'], 1):
+            tracks[str(i)] = {
+                "name": track['key'],
+                "display": track.get('name', track['key'].title())
+            }
+        return tracks
+    except:
+        # Fallback to hardcoded
+        return {
+            "1": {"name": "leetcode-75", "display": "LeetCode 75"},
+            "2": {"name": "top-interview-150", "display": "Top Interview 150"},
+            "3": {"name": "sql-50", "display": "SQL 50"},
+        }
 
+TRACKS = load_tracks()
 DIFFICULTIES = ["Easy", "Medium", "Hard"]
 
 def colored(text: str, color: str) -> str:
@@ -89,9 +107,57 @@ def run_command(cmd: list[str], description: str) -> bool:
         print(colored(f"✗ Error: {e}", "red"))
         return False
 
+def load_fetched_problem():
+    """Try to load problem details from fetch_leetcode.py."""
+    import json
+    temp_file = Path.home() / '.leetcode_problem.json'
+    if temp_file.exists():
+        try:
+            with open(temp_file, 'r') as f:
+                data = json.load(f)
+            temp_file.unlink()
+            return data
+        except:
+            return None
+    return None
+
 def get_problem_details():
     """Collect problem details from user."""
     print_header()
+
+    # Check if we have pre-fetched data
+    fetched = load_fetched_problem()
+    if fetched:
+        print(colored("\n✨ Auto-loaded from LeetCode!", "green"))
+        print(f"  ID: {fetched['id']}")
+        print(f"  Title: {fetched['title']}")
+        print(f"  Difficulty: {fetched['difficulty']}")
+        print(f"  Tags: {fetched['tags']}\n")
+
+        if confirm("Use these details?", True):
+            print(f"\n{colored('📚 Select Track:', 'bold')}")
+            for key, track in TRACKS.items():
+                print(f"  {colored(key, 'yellow')}. {track['display']}")
+
+            while True:
+                track_choice = input(f"{colored('>', 'green')} Enter choice (1-3): ").strip()
+                if track_choice in TRACKS:
+                    selected_track = TRACKS[track_choice]["name"]
+                    break
+                print(colored("Invalid choice. Try again.", "red"))
+
+            file_type = "py" if "sql" not in selected_track else "sql"
+
+            return {
+                "track": selected_track,
+                "type": file_type,
+                "id": int(fetched['id']),
+                "slug": fetched['slug'],
+                "title": fetched['title'],
+                "difficulty": fetched['difficulty'],
+                "category": "",
+                "tags": fetched['tags'],
+            }
 
     # Track selection
     print(colored("\n📚 Select Track:", "bold"))

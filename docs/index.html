@@ -12,43 +12,8 @@
   <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/autoloader/prism-autoloader.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.js"></script>
 
-  <!-- Strong cache busting for local assets -->
-  <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="pragma" content="no-cache">
-  <meta http-equiv="expires" content="0">
-
-  <!-- Version tracking - update this when you make changes -->
-  <meta name="version" content="2.0.0">
-
-  <script>
-    (function(){
-      // Use a combination of build timestamp and random for aggressive cache busting
-      const v = Date.now() + Math.random().toString(36).substr(2, 9);
-
-      // Clear old caches
-      if ('caches' in window) {
-        caches.keys().then(function(names) {
-          names.forEach(function(name) {
-            caches.delete(name);
-          });
-        });
-      }
-
-      const css = document.createElement('link');
-      css.rel = 'stylesheet';
-      css.href = 'style.css?v=' + v;
-      document.head.appendChild(css);
-
-      const app = document.createElement('script');
-      app.src = 'app.js?v=' + v;
-      app.defer = true;
-      document.head.appendChild(app);
-    })();
-  </script>
-  <noscript>
-    <link rel="stylesheet" href="style.css"/>
-    <script src="app.js" defer></script>
-  </noscript>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
 </head>
 <body>
   <header class="topbar">
@@ -96,11 +61,6 @@
       <div id="cards" class="cards"></div>
     </div>
   </main>
-
-  <!-- Theme Toggle Button -->
-  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-    🌙
-  </button>
 
   <footer class="footer">
     <div><a href="https://github.com/mh-13/leetcode-grind" target="_blank">GitHub Repo</a></div>

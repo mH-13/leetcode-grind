@@ -1,45 +1,86 @@
 # leetcode-grind
 
-Track-based LeetCode repo with pattern tags, interactive dashboard, and hassle-free daily workflow!
+Beautiful LeetCode problem tracker with **auto-fetch from URL**, interactive dashboard, and one-command workflow!
 
-✨ **NEW**: Interactive CLI wizard, analytics dashboard, calendar heatmap, dark/light themes!
+## ✨ Key Features
 
-## Tracks
-- LeetCode 75 (Python)
-- Top Interview 150 (Python)
-- SQL 50 (SQL)
+🤖 **Auto-fetch** - Paste LeetCode URL, get title/tags/difficulty/code automatically
+🧙 **Interactive wizard** - One command does everything
+📊 **Beautiful dashboard** - Heatmap, charts, and stats
+🎨 **Cream aesthetic** - Easy on the eyes
+🚀 **Full automation** - File creation, sync, git commit & push
 
-## Folders
-- `tracks/*.csv` — source of truth lists
-- `python/<track>/<id>_<slug>.py` — solutions (Python)
-- `sql/<track>/<id>_<slug>.sql` — solutions (SQL)
-- `docs/` — static UI (GitHub Pages)
-- `scripts/` — helper scripts
+## 🚀 Quick Start
 
-## Progress
-<!-- PROGRESS:lc75:start -->Leetcode 75: 4/76 (5%)<!-- PROGRESS:lc75:end -->
+```bash
+# 1. Fetch problem from LeetCode URL
+python scripts/fetch_leetcode.py https://leetcode.com/problems/two-sum/
+
+# 2. Run wizard (auto-loads fetched data!)
+./daily.sh
+
+# 3. Select track → Done!
+```
+
+## 📊 Progress
+
+<!-- PROGRESS:lc75:start -->Leetcode 75: 5/76 (7%)<!-- PROGRESS:lc75:end -->
 <!-- PROGRESS:ti150:start -->Top Interview 150: 0/5 (0%)<!-- PROGRESS:ti150:end -->
 <!-- PROGRESS:sql50:start -->Sql 50: 1/4 (25%)<!-- PROGRESS:sql50:end -->
 
-## Daily flow (NEW! 🎉)
+## 🌐 Dashboard
 
-**Quick method (recommended):**
+Live at: `https://mh-13.github.io/leetcode-grind/`
+
+- Progress cards with animated counters
+- GitHub-style activity heatmap (365 days)
+- Difficulty distribution charts
+- Tag cloud visualization
+- Recent activity feed
+- Filterable problem list
+
+## 📖 Full Documentation
+
+See **[GUIDE.md](./GUIDE.md)** for complete guide including:
+- Detailed workflow
+- Pro tips and aliases
+- Customization
+- Troubleshooting
+
+## 🛠️ Setup (One-Time)
+
 ```bash
-./daily.sh
+git clone https://github.com/mh-13/leetcode-grind.git
+cd leetcode-grind
+pip install requests
+chmod +x daily.sh
 ```
-Interactive wizard handles everything: file creation, CSV updates, sync, git commit & push!
 
-**Manual method:**
-1. Append a row to the track CSV (id/title/slug/difficulty/category/tags).
-2. Create `python/.../<id>_<slug>.py` or `sql/.../<id>_<slug>.sql` with the header block + code.
-3. Run `python scripts/sync_all.py` to refresh checklists, README, and UI JSON.
-4. Commit & push.
+Enable GitHub Pages: Settings → Pages → Source: `docs/`
 
-**See [NEW_FEATURES.md](./NEW_FEATURES.md) for complete guide!**
+## 💡 Pro Tip
 
-## UI (GitHub Pages)
-Enable Pages for this repo (Settings → Pages → Source: `docs/`).
-Live showcase: `https://mh-13.github.io/leetcode-grind/`
+```bash
+# Add to ~/.bashrc or ~/.zshrc
+alias lcf='python ~/Codes/leetcode-grind/scripts/fetch_leetcode.py'
+alias lc='cd ~/Codes/leetcode-grind && ./daily.sh'
+```
 
-**💡 Seeing old version?** Press `Ctrl+Shift+R` (or `Cmd+Shift+R` on Mac) for hard reload.
-See [CACHE_CLEARING_GUIDE.md](./CACHE_CLEARING_GUIDE.md) for detailed solutions.
+Then:
+```bash
+lcf <paste-leetcode-url>  # Auto-fetch
+lc                         # Run wizard
+```
+
+## 📁 Structure
+
+```
+python/leetcode-75/0001_two_sum.py
+       └─ track ─┘ └id┘└── slug ──┘
+```
+
+Always 4-digit ID, underscore slug
+
+---
+
+**Made with ☕ and automation** • See [GUIDE.md](./GUIDE.md) for details

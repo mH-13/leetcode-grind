@@ -1,10 +1,11 @@
 {
-  "generated_at": "2025-10-14T10:51:48.009963+00:00",
+  "generated_at": "2025-10-21T05:54:28.394539+00:00",
   "tracks": [
     "leetcode-75"
   ],
   "tags": [
     "array",
+    "greedy",
     "hashmap",
     "math",
     "string",
@@ -50,6 +51,24 @@
       "track": "leetcode-75",
       "type": "py",
       "path": "python/leetcode-75/0151_reverse_words_in_a_string.py"
+    },
+    {
+      "id": 605,
+      "title": "Can Place Flowers",
+      "slug": "can-place-flowers",
+      "idea": "Time: O() | Space: O()",
+      "time": "O() | Space: O()",
+      "space": "",
+      "tags": [
+        "array",
+        "greedy"
+      ],
+      "link": "https://leetcode.com/problems/can-place-flowers/",
+      "difficulty": "Easy",
+      "category": "Array / String",
+      "track": "leetcode-75",
+      "type": "py",
+      "path": "python/leetcode-75/0605_can-place-flowers.py"
     },
     {
       "id": 1071,

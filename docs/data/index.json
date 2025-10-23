@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-10-23T04:27:37.434420+00:00",
+  "generated_at": "2025-10-23T18:47:38.934685+00:00",
   "tracks": [
     "leetcode-75"
   ],
@@ -8,6 +8,7 @@
     "greedy",
     "hashmap",
     "math",
+    "prefix-sum",
     "string",
     "two-pointers"
   ],
@@ -51,6 +52,24 @@
       "track": "leetcode-75",
       "type": "py",
       "path": "python/leetcode-75/0151_reverse_words_in_a_string.py"
+    },
+    {
+      "id": 238,
+      "title": "Product of Array Except Self",
+      "slug": "product-of-array-except-self",
+      "idea": "Time: O() | Space: O()",
+      "time": "O() | Space: O()",
+      "space": "",
+      "tags": [
+        "array",
+        "prefix-sum"
+      ],
+      "link": "https://leetcode.com/problems/product-of-array-except-self/",
+      "difficulty": "Medium",
+      "category": "Array / String",
+      "track": "leetcode-75",
+      "type": "py",
+      "path": "python/leetcode-75/0238_product-of-array-except-self.py"
     },
     {
       "id": 345,

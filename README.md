@@ -24,7 +24,7 @@ python scripts/fetch_leetcode.py https://leetcode.com/problems/two-sum/
 
 ## 📊 Progress
 
-<!-- PROGRESS:lc75:start -->Leetcode 75: 7/76 (9%)<!-- PROGRESS:lc75:end -->
+<!-- PROGRESS:lc75:start -->Leetcode 75: 8/76 (11%)<!-- PROGRESS:lc75:end -->
 <!-- PROGRESS:ti150:start -->Top Interview 150: 0/5 (0%)<!-- PROGRESS:ti150:end -->
 <!-- PROGRESS:sql50:start -->Sql 50: 1/4 (25%)<!-- PROGRESS:sql50:end -->
 

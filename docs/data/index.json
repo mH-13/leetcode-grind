@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-10-23T18:47:38.934685+00:00",
+  "generated_at": "2025-10-27T06:50:45.399828+00:00",
   "tracks": [
     "leetcode-75"
   ],
@@ -70,6 +70,24 @@
       "track": "leetcode-75",
       "type": "py",
       "path": "python/leetcode-75/0238_product-of-array-except-self.py"
+    },
+    {
+      "id": 334,
+      "title": "Increasing Triplet Subsequence",
+      "slug": "increasing-triplet-subsequence",
+      "idea": "Time: O() | Space: O()",
+      "time": "O() | Space: O()",
+      "space": "",
+      "tags": [
+        "array",
+        "greedy"
+      ],
+      "link": "https://leetcode.com/problems/increasing-triplet-subsequence/",
+      "difficulty": "Medium",
+      "category": "Array / String",
+      "track": "leetcode-75",
+      "type": "py",
+      "path": "python/leetcode-75/0334_increasing-triplet-subsequence.py"
     },
     {
       "id": 345,

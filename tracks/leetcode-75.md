@@ -5,7 +5,7 @@
 
 - [x] 0151 — reverse_words_in_a_string
 - [x] 0238 — product_of_array_except_self
-- [ ] 0334 — increasing_triplet_subsequence
+- [x] 0334 — increasing_triplet_subsequence
 - [x] 0345 — reverse_vowels_of_a_string
 - [ ] 0443 — string_compression
 - [x] 0605 — can_place_flowers

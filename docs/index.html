@@ -16,31 +16,67 @@
   <script src="app.js" defer></script>
 </head>
 <body>
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1 class="hero-title">LeetCode Grind</h1>
-      <p class="hero-subtitle">Automated Problem Tracking · Smart Analytics · Built for Scale</p>
-      <p class="hero-description">
-        From chaotic spreadsheets to a fully automated tracking system.
-        One command to fetch, organize, and commit LeetCode solutions with zero manual entry.
-      </p>
-      <div class="hero-cta">
-        <a href="#dashboard" class="btn-primary">View Dashboard</a>
-        <a href="https://github.com/mH-13/leetcode-grind" target="_blank" class="btn-secondary">GitHub</a>
+  <!-- Split Hero Section with Diagonal Divider -->
+  <section class="split-hero">
+    <div class="split-container">
+      <!-- Left Side: Hero Content -->
+      <div class="split-left">
+        <div class="hero-content">
+          <div class="hero-badge">Problem Solving Portfolio</div>
+          <h1 class="hero-title">Automated LeetCode Tracking System</h1>
+          <p class="hero-description">
+            Built an end-to-end automation pipeline: GraphQL scraping → CLI wizard → Git workflow → Analytics dashboard.
+            Zero manual data entry. One command does everything.
+          </p>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <div class="hero-stat-value" id="heroTotalProblems">0</div>
+              <div class="hero-stat-label">Problems Solved</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-value" id="heroTracks">0</div>
+              <div class="hero-stat-label">Active Tracks</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-value">100%</div>
+              <div class="hero-stat-label">Automated</div>
+            </div>
+          </div>
+          <div class="hero-cta">
+            <a href="#dashboard" class="btn-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+              </svg>
+              View Dashboard
+            </a>
+            <a href="https://github.com/mH-13/leetcode-grind" target="_blank" class="btn-secondary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+              </svg>
+              GitHub Repo
+            </a>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
 
-  <!-- Features Showcase -->
-  <section class="features-section">
-    <h2 class="section-heading">Why I Built This</h2>
-    <p class="section-subheading">
-      Managing LeetCode progress across multiple tracks was a mess. I automated everything.
-    </p>
 
-    <div class="features-grid" id="featuresGrid">
-      <!-- Features will be dynamically inserted with smooth animations -->
+      <!-- Right Side: Features -->
+      <div class="split-right">
+        <div class="features-content">
+          <div class="features-header">
+            <h2 class="section-heading">Technical Highlights</h2>
+            <p class="section-subheading">
+              Full-stack solution built from scratch to solve real workflow pain points
+            </p>
+          </div>
+          <div class="features-grid" id="featuresGrid">
+            <!-- Features will be dynamically inserted with smooth animations -->
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 

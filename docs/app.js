@@ -376,51 +376,64 @@
 
     const features = [
       {
-        icon: '⚡',
-        title: 'One-Command Workflow',
-        description: 'Paste a LeetCode URL, run the wizard. Auto-fetches metadata, creates files, updates trackers, and commits to git.',
-        tech: 'GraphQL API + CLI Wizard'
+        icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>',
+        title: 'GraphQL API Integration',
+        description: 'Scrapes problem metadata from LeetCode using official GraphQL endpoint. Fetches ID, title, difficulty, tags, and code templates automatically.',
+        tech: 'Python + Requests + GraphQL'
       },
       {
-        icon: '🎯',
-        title: 'Zero Manual Entry',
-        description: 'Scrapes problem ID, title, difficulty, tags, and code templates directly from LeetCode. No typos, no spreadsheets.',
-        tech: 'Python + Requests'
+        icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg>',
+        title: 'Automated File Generation',
+        description: 'Creates solution files with proper headers, updates CSV trackers, rebuilds JSON plans, and generates markdown checklists—all from one command.',
+        tech: 'CLI Wizard + Multi-Format'
       },
       {
-        icon: '📊',
-        title: 'Smart Analytics',
-        description: 'Track progress across multiple problem sets with real-time stats, difficulty breakdown, and tag frequency analysis.',
-        tech: 'Dynamic JSON Generation'
+        icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="7.5 4.21 12 6.81 16.5 4.21"></polyline><polyline points="7.5 19.79 7.5 14.6 3 12"></polyline><polyline points="21 12 16.5 14.6 16.5 19.79"></polyline><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>',
+        title: 'Registry-Based Architecture',
+        description: 'Extensible track system using JSON registry. Supports multiple problem sets (LeetCode 75, Top 150, SQL 50) with automatic language detection.',
+        tech: 'JSON Config + Dynamic Loading'
       },
       {
-        icon: '🔄',
-        title: 'Auto-Sync Everything',
-        description: 'CSV as source of truth. One sync rebuilds JSON plans, markdown checklists, README badges, and UI datasets.',
-        tech: 'Multi-Format Parsing'
+        icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>',
+        title: 'Git Workflow Automation',
+        description: 'Auto-generates conventional commit messages, stages files, commits, and optionally pushes to remote—all with proper formatting and co-author attribution.',
+        tech: 'Git + Shell Scripts'
       },
       {
-        icon: '🎨',
-        title: 'Beautiful UI',
-        description: 'GitHub Pages dashboard with search, filters, code preview, and smooth animations. Works offline with static files.',
-        tech: 'Vanilla JS + CSS'
+        icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>',
+        title: 'Real-Time Analytics',
+        description: 'Interactive dashboard with difficulty breakdown, tag frequency analysis, progress tracking, and problem search—all built with vanilla JavaScript.',
+        tech: 'Vanilla JS + GitHub Pages'
       },
       {
-        icon: '🏗️',
-        title: 'Extensible Architecture',
-        description: 'Registry-based track system. Add new problem sets in seconds with automated folder structure and template generation.',
-        tech: 'JSON Configuration'
+        icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>',
+        title: '5-10min → 30sec Setup',
+        description: 'Reduced problem setup time by 90%. One URL paste replaces manual data entry, file creation, tracker updates, and git operations.',
+        tech: 'End-to-End Automation'
       }
     ];
 
     featuresGrid.innerHTML = features.map(feature => `
       <div class="feature-card">
-        <span class="feature-icon">${feature.icon}</span>
+        <div class="feature-icon">${feature.icon}</div>
         <h3 class="feature-title">${escapeHtml(feature.title)}</h3>
         <p class="feature-description">${escapeHtml(feature.description)}</p>
         <div class="feature-tech">${escapeHtml(feature.tech)}</div>
       </div>
     `).join('');
+  }
+
+  function updateHeroStats() {
+    const stats = calculateStats();
+    const heroTotal = document.getElementById('heroTotalProblems');
+    const heroTracks = document.getElementById('heroTracks');
+
+    if (heroTotal) {
+      animateCounter(heroTotal, stats.solved);
+    }
+    if (heroTracks) {
+      animateCounter(heroTracks, Object.keys(stats.tracks).length);
+    }
   }
 
   // Make openItemById globally accessible
@@ -596,6 +609,7 @@
 
   // Initial render
   renderFeatures();
+  updateHeroStats();
   renderDashboard();
   render();
 

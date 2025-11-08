@@ -298,17 +298,6 @@
         </div>
       </div>
 
-      <!-- Calendar Heatmap -->
-      <div class="heatmap-container">
-        <h3 class="heatmap-title">📅 Activity Heatmap (Last Year)</h3>
-        <div class="heatmap-grid" id="heatmapGrid"></div>
-        <div class="heatmap-legend">
-          <span>Less</span>
-          ${[0, 1, 2, 3, 4].map(i => `<div class="heatmap-day" data-count="${i}" style="width: 12px; height: 12px;"></div>`).join('')}
-          <span>More</span>
-        </div>
-      </div>
-
       <!-- Charts Grid -->
       <div class="charts-grid">
         <!-- Difficulty Distribution -->
@@ -379,45 +368,59 @@
       const target = parseInt(el.getAttribute('data-target') || el.textContent);
       animateCounter(el, target);
     });
-
-    // Render heatmap
-    renderHeatmap();
   }
 
-  function renderHeatmap() {
-    const grid = document.getElementById('heatmapGrid');
-    if (!grid) return;
+  function renderFeatures() {
+    const featuresGrid = document.getElementById('featuresGrid');
+    if (!featuresGrid) return;
 
-    // Generate 365 days of data (mock for now)
-    const days = 365;
-    const today = new Date();
-    const items = data.items || [];
+    const features = [
+      {
+        icon: '⚡',
+        title: 'One-Command Workflow',
+        description: 'Paste a LeetCode URL, run the wizard. Auto-fetches metadata, creates files, updates trackers, and commits to git.',
+        tech: 'GraphQL API + CLI Wizard'
+      },
+      {
+        icon: '🎯',
+        title: 'Zero Manual Entry',
+        description: 'Scrapes problem ID, title, difficulty, tags, and code templates directly from LeetCode. No typos, no spreadsheets.',
+        tech: 'Python + Requests'
+      },
+      {
+        icon: '📊',
+        title: 'Smart Analytics',
+        description: 'Track progress across multiple problem sets with real-time stats, difficulty breakdown, and tag frequency analysis.',
+        tech: 'Dynamic JSON Generation'
+      },
+      {
+        icon: '🔄',
+        title: 'Auto-Sync Everything',
+        description: 'CSV as source of truth. One sync rebuilds JSON plans, markdown checklists, README badges, and UI datasets.',
+        tech: 'Multi-Format Parsing'
+      },
+      {
+        icon: '🎨',
+        title: 'Beautiful UI',
+        description: 'GitHub Pages dashboard with search, filters, code preview, and smooth animations. Works offline with static files.',
+        tech: 'Vanilla JS + CSS'
+      },
+      {
+        icon: '🏗️',
+        title: 'Extensible Architecture',
+        description: 'Registry-based track system. Add new problem sets in seconds with automated folder structure and template generation.',
+        tech: 'JSON Configuration'
+      }
+    ];
 
-    // Create a map of dates to problem counts (mock)
-    const dateMap = {};
-    items.forEach((item, idx) => {
-      // Simulate solve dates by spreading items across recent dates
-      const daysAgo = Math.floor((idx / items.length) * 365);
-      const date = new Date(today);
-      date.setDate(date.getDate() - daysAgo);
-      const dateKey = date.toISOString().split('T')[0];
-      dateMap[dateKey] = (dateMap[dateKey] || 0) + 1;
-    });
-
-    grid.innerHTML = '';
-    for (let i = days - 1; i >= 0; i--) {
-      const date = new Date(today);
-      date.setDate(date.getDate() - i);
-      const dateKey = date.toISOString().split('T')[0];
-      const count = dateMap[dateKey] || 0;
-      const level = count === 0 ? 0 : Math.min(Math.floor(count / 2) + 1, 4);
-
-      const day = document.createElement('div');
-      day.className = 'heatmap-day';
-      day.setAttribute('data-count', level);
-      day.title = `${dateKey}: ${count} problems`;
-      grid.appendChild(day);
-    }
+    featuresGrid.innerHTML = features.map(feature => `
+      <div class="feature-card">
+        <span class="feature-icon">${feature.icon}</span>
+        <h3 class="feature-title">${escapeHtml(feature.title)}</h3>
+        <p class="feature-description">${escapeHtml(feature.description)}</p>
+        <div class="feature-tech">${escapeHtml(feature.tech)}</div>
+      </div>
+    `).join('');
   }
 
   // Make openItemById globally accessible
@@ -592,6 +595,7 @@
   }
 
   // Initial render
+  renderFeatures();
   renderDashboard();
   render();
 

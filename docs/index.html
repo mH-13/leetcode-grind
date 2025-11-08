@@ -16,10 +16,38 @@
   <script src="app.js" defer></script>
 </head>
 <body>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">LeetCode Grind</h1>
+      <p class="hero-subtitle">Automated Problem Tracking · Smart Analytics · Built for Scale</p>
+      <p class="hero-description">
+        From chaotic spreadsheets to a fully automated tracking system.
+        One command to fetch, organize, and commit LeetCode solutions with zero manual entry.
+      </p>
+      <div class="hero-cta">
+        <a href="#dashboard" class="btn-primary">View Dashboard</a>
+        <a href="https://github.com/mH-13/leetcode-grind" target="_blank" class="btn-secondary">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Showcase -->
+  <section class="features-section">
+    <h2 class="section-heading">Why I Built This</h2>
+    <p class="section-subheading">
+      Managing LeetCode progress across multiple tracks was a mess. I automated everything.
+    </p>
+
+    <div class="features-grid" id="featuresGrid">
+      <!-- Features will be dynamically inserted with smooth animations -->
+    </div>
+  </section>
+
   <header class="topbar">
     <div class="brand">
-      <h1>leetcode-grind</h1>
-      <span class="muted">coder view · filter · preview</span>
+      <h1>Problem Explorer</h1>
+      <span class="muted">Search · Filter · Preview Solutions</span>
     </div>
     <div class="searchbox">
       <input id="q" placeholder="search title / slug / tags (e.g. two-pointers, dp, 1768)"/>
@@ -39,10 +67,10 @@
     </div>
   </section>
 
-  <main>
+  <main id="dashboard">
     <div class="section-header">
       <div class="section-title">
-        <span id="viewTitle">📊 Dashboard</span>
+        <span id="viewTitle">📊 Analytics Dashboard</span>
       </div>
       <div class="view-toggle">
         <button class="view-toggle-btn active" data-view="dashboard">Dashboard</button>
